@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/huudanhnguyen/Nodejs_Typescript/issues"
   },
-  "homepage": "https://github.com/huudanhnguyen/Nodejs_Typescript#readme"
+  "homepage": "https://github.com/huudanhnguyen/Nodejs_Typescript#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
