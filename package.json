@@ -1,0 +1,23 @@
+{
+  "name": "nodejs_typescript",
+  "version": "1.0.0",
+  "description": "Nodejs_Typescript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huudanhnguyen/Nodejs_Typescript.git"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript"
+  ],
+  "author": "huudanhnguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huudanhnguyen/Nodejs_Typescript/issues"
+  },
+  "homepage": "https://github.com/huudanhnguyen/Nodejs_Typescript#readme"
+}
