@@ -9,6 +9,8 @@ app.set('view engine','ejs');
 app.set('views',__dirname +'/views');
 //config router
 webRoutes(app);
+//confit static files
+app.use(express.static("public"));
 
 app.listen(PORT, () => {
   console.log(`my app is running on port:${PORT}`);
