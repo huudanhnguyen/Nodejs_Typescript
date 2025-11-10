@@ -4,6 +4,11 @@ import webRoutes from "./routes/web";
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+//config req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 //config view engine
 app.set('view engine','ejs');
 app.set('views',__dirname +'/views');

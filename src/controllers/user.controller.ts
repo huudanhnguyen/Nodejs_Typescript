@@ -1,9 +1,16 @@
-import { Request,Response } from "express";
+import { Request, Response } from "express";
+import { handleCreateUser } from "../services/user.service";
 
-const getHomePage = (req:Request, res:Response) => {
+const getHomePage = (req: Request, res: Response) => {
   return res.render("home");
 };
 const getCreateUserPage = (req: Request, res: Response) => {
   return res.render("create-user");
 };
-export { getHomePage, getCreateUserPage };
+const postCreateUserPage = (req: Request, res: Response) => {
+  console.log(req.body);
+  const { fullName, email, address } = req.body;
+  handleCreateUser(fullName, email, address);
+  return res.redirect("/");
+};
+export { getHomePage, getCreateUserPage, postCreateUserPage };
