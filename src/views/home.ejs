@@ -18,6 +18,17 @@
         <h2 class="fw-bold">User List</h2>
         <a href="/create-user" class="btn btn-primary">+ Create User</a>
       </div>
+      <% if (message) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= message %>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      <% } %>
 
       <div class="card shadow-sm">
         <div class="card-body">
