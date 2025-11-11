@@ -7,8 +7,6 @@
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
     />
   </head>
 
@@ -18,8 +16,13 @@
         <h2 class="fw-bold">User List</h2>
         <a href="/create-user" class="btn btn-primary">+ Create User</a>
       </div>
+
       <% if (message) { %>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <div
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+        id="autoDismissAlert"
+      >
         <%= message %>
         <button
           type="button"
@@ -36,11 +39,11 @@
             <table class="table table-hover align-middle">
               <thead class="table-primary">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Address</th>
-                  <th scope="col" class="text-center">Actions</th>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th class="text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,11 +55,24 @@
                   <td><%= user.email %></td>
                   <td><%= user.address %></td>
                   <td class="text-center">
+                    <!-- View button triggers modal -->
+                    <button
+                      class="btn btn-sm btn-info text-white me-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#userDetailModal"
+                      data-id="<%= user.id %>"
+                      data-name="<%= user.name %>"
+                      data-email="<%= user.email %>"
+                      data-address="<%= user.address %>"
+                    >
+                      View
+                    </button>
+
                     <a
                       href="/users/edit/<%= user.id %>"
                       class="btn btn-sm btn-warning me-1"
-                      >Edit
-                    </a>
+                      >Edit</a
+                    >
                     <form
                       action="/users/delete/<%= user.id %>"
                       method="post"
@@ -86,10 +102,44 @@
       </div>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+    <!-- 🪄 Bootstrap Modal -->
+    <div
+      class="modal fade"
+      id="userDetailModal"
+      tabindex="-1"
+      aria-labelledby="userDetailModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="userDetailModalLabel">User Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Name:</strong> <span id="modalName"></span></p>
+            <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+            <p><strong>Address:</strong> <span id="modalAddress"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>
