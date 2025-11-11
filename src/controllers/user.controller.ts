@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
-import { handleCreateUser } from "../services/user.service";
+import { getAllUsers, handleCreateUser } from "../services/user.service";
 
-const getHomePage = (req: Request, res: Response) => {
-  return res.render("home");
+const getHomePage = async (req: Request, res: Response) => {
+  const users= await getAllUsers();
+  return res.render("home",{
+    users:users
+  });
 };
-const getCreateUserPage = (req: Request, res: Response) => {
+const getCreateUserPage = async (req: Request, res: Response) => {
   return res.render("create-user");
 };
-const postCreateUserPage = (req: Request, res: Response) => {
-  console.log(req.body);
-  const { fullName, email, address } = req.body;
-  handleCreateUser(fullName, email, address);
+const postCreateUserPage = async (req: Request, res: Response) => {
+  const { name, email, address } = req.body;
+  await handleCreateUser(name, email, address);
   return res.redirect("/");
 };
 export { getHomePage, getCreateUserPage, postCreateUserPage };

@@ -16,7 +16,6 @@ app.set("views", __dirname + "/views");
 webRoutes(app);
 //confit static files
 app.use(express.static("public"));
-getConnection();
 app.listen(PORT, () => {
   console.log(`my app is running on port:${PORT}`);
 });
