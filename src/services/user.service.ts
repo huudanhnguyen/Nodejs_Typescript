@@ -1,22 +1,21 @@
 import getConnection from "config/database";
+import {PrismaClient} from "@prisma/client";
 
 const handleCreateUser = async (name: string, email: string, address: string) => {
-  const connection = await getConnection();
-  // A simple INSERT query
-  try {
-    await connection.execute(
-      "INSERT INTO `users` (name, email, address) VALUES (?, ?, ?)",
-      [name, email, address]
-    );
-  } catch (err) {
-    console.log(err);
-  }
+  const prisma = new PrismaClient();
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      address,
+    },
+  });
 };
 const getAllUsers = async () => {
   const connection = await getConnection();
   // A simple SELECT query
   try {
-    const [results, fields] = await connection.query("SELECT * FROM `users`");
+    const [results, fields] = await connection.query("SELECT * FROM `user`");
     return results;
   } catch (err) {
     console.log(err);
